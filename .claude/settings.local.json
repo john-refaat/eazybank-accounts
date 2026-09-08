@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//tmp/pdcheck/**)",
+      "Bash(unzip -o -q ~/.m2/repository/org/springframework/spring-web/7.0.8/spring-web-7.0.8-sources.jar 'org/springframework/web/bind/MethodArgumentNotValidException.java' 'org/springframework/validation/BindException.java')",
+      "Bash(unzip -o -q ~/.m2/repository/org/springframework/spring-context/7.0.8/spring-context-7.0.8-sources.jar 'org/springframework/validation/BindException.java')",
+      "Bash(./mvnw -q -o spring-boot:run -Dspring-boot.run.jvmArguments=\"-Dspring.devtools.restart.enabled=false\")",
+      "Read(//tmp/**)",
+      "Bash(curl -s -m 3 http://localhost:8080/actuator/health)",
+      "Bash(echo \" <- exit=$?\")",
+      "Bash(java -version)",
+      "Bash(curl -s -i -X POST http://localhost:8080/api/v1/account -H 'Content-Type: application/json' -d '{\"name\":\"A\",\"email\":\"bad\",\"phoneNumber\":\"123\"}')",
+      "Bash(curl -s -i http://localhost:8080/api/v1/account/abc)",
+      "Bash(unzip -o -q ~/.m2/repository/org/springframework/boot/spring-boot-webmvc/4.1.0/spring-boot-webmvc-4.1.0-sources.jar 'org/springframework/boot/webmvc/autoconfigure/WebMvcAutoConfiguration.java')",
+      "mcp__idea__build_project",
+      "Bash(curl -s -m 20 -i -X POST http://localhost:8080/api/v1/account -H 'Content-Type: application/json' -d '{\"name\":\"A\",\"email\":\"bad\",\"phoneNumber\":\"123\"}')",
+      "mcp__idea__get_file_problems"
+    ]
+  }
+}

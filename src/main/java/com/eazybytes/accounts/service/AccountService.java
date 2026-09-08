@@ -1,0 +1,14 @@
+package com.eazybytes.accounts.service;
+
+import com.eazybytes.accounts.dto.CustomerDto;
+
+public interface AccountService {
+
+    void createAccount(CustomerDto customerDto);
+
+    CustomerDto getAccount(String phoneNumber);
+
+    void updateAccount(CustomerDto customerDto);
+
+    void deleteAccount(String phoneNumber);
+}
