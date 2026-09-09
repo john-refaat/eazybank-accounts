@@ -11,8 +11,9 @@
 	<groupId>com.eazybytes</groupId>
 	<artifactId>accounts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
+	<packaging>jar</packaging>
+	<name>accounts</name>
+	<description>Accounts microservice</description>
 	<url/>
 	<licenses>
 		<license/>
