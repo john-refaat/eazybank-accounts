@@ -1,5 +1,6 @@
 package com.eazybytes.accounts.controller;
 
+import com.eazybytes.accounts.dto.AccountsContactInfo;
 import com.eazybytes.accounts.dto.CustomerDto;
 import com.eazybytes.accounts.dto.ResponseDto;
 import com.eazybytes.accounts.service.AccountService;
@@ -12,6 +13,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -33,6 +35,11 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
 
     private final AccountService accountService;
+
+    private final AccountsContactInfo accountsContactInfo;
+
+    @Value("${build.version}")
+    private String buildVersion;
 
     @Operation(summary = "Create a new account", description = "Create a new account for a customer")
     @ApiResponses(value = {
@@ -95,5 +102,22 @@ public class AccountController {
                                       @PathVariable String phoneNumber) {
         accountService.deleteAccount(phoneNumber);
         return new ResponseDto("200", "Account Deleted!");
+    }
+
+
+    @Operation(summary = "Get build info", description = "Get build info")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Build info retrieved successfully"),
+            @ApiResponse(responseCode = "500", description = "Internal server error",
+            content = @Content(schema = @Schema(implementation = ProblemDetail.class)))
+    })
+    @GetMapping("/build-info")
+    public String getBuildInfo() {
+        return buildVersion;
+    }
+
+    @GetMapping("/contact-info")
+    public AccountsContactInfo getContactInfo() {
+        return accountsContactInfo;
     }
 }

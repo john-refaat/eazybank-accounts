@@ -7,7 +7,7 @@ spring:
     problemdetails:
       enabled: true
   datasource:
-    url: jdbc:h2:mem:loansdb
+    url: jdbc:h2:mem:accountsdb
     driverClassName: org.h2.Driver
     username: sa
     password:
@@ -23,3 +23,18 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  profiles:
+    active:
+      - "qa"
+
+build:
+  version: "3.0"
+
+accounts:
+  message: "Welcome to Eazy Bank Development API"
+  contactDetails:
+    name: "John Doe - Technical Lead"
+    email: "john.doe@eazybank.com"
+  onCallSupport:
+    - (555) 555-1234
+    - (555) 555-4321

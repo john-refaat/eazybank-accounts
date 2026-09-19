@@ -49,6 +49,51 @@ service provides CRUD operations for customer accounts and their associated info
    ./mvnw spring-boot:run
    ```
 
+## Docker
+### To create a docker image using Dockerfile:
+   1. Create the docker file and write instructions to:
+           i. Import base image
+          ii. Copy the jar file to the docker image
+          iii. Define the entry point: Run the application
+   2. Build the docker image
+       ```bash
+       docker build . -t [docker_accout_username]/eazybank-accounts:tag
+       ```
+### To Create a docker image using Buldpacks
+ 1. Make sure the Spring Boot Mavin Plugin is present in pom.xml
+ 2. Add the image name
+```xml
+         <configuration>
+					<image>
+						<name>[docker_accout_username]/eazybank-${project.artifactId}:tag</name>
+					</image>
+        </configuration>
+```
+3. Build image
+```bash
+        mvn spring-boot:build-image
+```
+### To Create a docker image using Google Jib
+ 1.  Add Jib Maven Plugin Configuration
+```xml
+    <plugin>
+    <groupId>com.google.cloud.tools</groupId>
+    <artifactId>jib-maven-plugin</artifactId>
+    <version>3.5.2</version>
+    <configuration>
+        <to>
+            <image>[docker_accout_username]/eazybank-${project.artifactId}:tag</image>
+        </to>
+    </configuration>
+</plugin>
+```
+ 2.  Set the image name
+ 3.  Build the image
+```bash
+    mvn compile jib:dockerBuild
+```
+
+
 ## Running the Application
 
 The application will start on port **8080** by default.
